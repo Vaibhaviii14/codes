@@ -180,7 +180,43 @@ int main() {
     cout << "Minimum Cost = " << minCost;
 }
 
+<<<<<<<<<<<mcm>>>>>>>>>>>>
 
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int mcm(int a[], int n) {
+    int dp[10][10];
+
+    for (int i = 1; i < n; i++)
+        dp[i][i] = 0;
+
+    for (int len = 2; len < n; len++) {
+        for (int i = 1; i < n - len + 1; i++) {
+            int j = i + len - 1;
+            dp[i][j] = INT_MAX;
+
+            for (int k = i; k < j; k++) {
+                int cost = dp[i][k] + dp[k + 1][j]
+                         + a[i - 1] * a[k] * a[j];
+
+                dp[i][j] = min(dp[i][j], cost);
+            }
+        }
+    }
+
+    return dp[1][n - 1];
+}
+
+int main() {
+    int a[] = {10, 20, 30, 40, 30};
+    int n = 5;
+
+    cout << mcm(a, n);
+
+    return 0;
+}
 
 
 
